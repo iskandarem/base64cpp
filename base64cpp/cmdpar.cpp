@@ -1,4 +1,5 @@
 #include "cmdpar.hpp"
+#include "base64.hpp"
 #include <iostream>
 using namespace base64cpp;
 CmdPar::CmdPar()
@@ -20,12 +21,23 @@ void CmdPar::parse(int argc, const char** argv)
 		if(vm.count("help"))
 		{
 			std::cout << desc;
+			return;
 		}
 		
 		if(vm.count("version"))
 		{
 			std::cout << "base64cpp version 0.1.0\n";
+			return;
 		}
+		if(vm.size() == 0)
+		{
+			for(std::string line; std::getline(std::cin, line);)
+			{
+				std::cout << base64cpp::encode(line) << '\n';
+			}
+			return;
+		}
+		
 		po::notify(vm);
 	}
 	catch(std::exception& ex)

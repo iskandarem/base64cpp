@@ -2,10 +2,9 @@
 find_package(boost_program_options CONFIG REQUIRED)
 
 add_library(base64cpp_lib 
-	uint24_t.hpp
-	uint24_t.cpp
 	cmdpar.hpp
 	cmdpar.cpp
+	base64.hpp
 )
 
 target_link_libraries(base64cpp_lib
