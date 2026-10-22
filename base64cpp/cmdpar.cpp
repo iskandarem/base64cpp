@@ -4,6 +4,12 @@
 #include <iterator>
 
 using namespace base64cpp;
+
+constexpr std::string_view version_description = R"(base64cpp (iskandarem's corehobbies) 0.1.0
+
+Written by Iskandar Emomzoda.
+)";
+
 CmdPar::CmdPar()
 {
 	desc.add_options()
@@ -28,7 +34,7 @@ void CmdPar::parse(int argc, const char** argv)
 		
 		if(vm.count("version"))
 		{
-			std::cout << "base64cpp version 0.1.0\n";
+			std::cout << version_description;
 			return;
 		}
 		if(vm.size() == 0)
