@@ -30,7 +30,7 @@
 			"inherits": "x64-debug",
 			"cacheVariables": {
 				"CMAKE_BUILD_TYPE": "Release",
-				"VCPKG_TARGET_TRIPLET": "x64-linux-static"
+				"VCPKG_TARGET_TRIPLET": "x64-linux"
 			}
 		}
 	]

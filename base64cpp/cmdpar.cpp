@@ -1,6 +1,8 @@
 #include "cmdpar.hpp"
 #include "base64.hpp"
 #include <iostream>
+#include <iterator>
+
 using namespace base64cpp;
 CmdPar::CmdPar()
 {
@@ -31,10 +33,19 @@ void CmdPar::parse(int argc, const char** argv)
 		}
 		if(vm.size() == 0)
 		{
-			for(std::string line; std::getline(std::cin, line);)
-			{
-				std::cout << base64cpp::encode(line) << '\n';
-			}
+			std::string content{
+				std::istreambuf_iterator<char>{std::cin},
+				std::istreambuf_iterator<char>{}
+		
+			};
+			std::cout << base64cpp::encode(content) << '\n';
+			return;
+		} 
+		if(vm.count("decode"))
+		{
+			std::string content;
+			std::getline(std::cin, content);
+			std::cout << base64cpp::decode(content) << '\n';
 			return;
 		}
 		
